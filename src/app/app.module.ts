@@ -19,10 +19,16 @@ import {
 } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { MapComponent } from './map/map.component';
+import { SurveyListsComponent } from './survey-lists/survey-lists.component';
+import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent,
+    SurveyListsComponent,
+    SurveyDetailComponent
   ],
   imports: [
     BrowserModule,
