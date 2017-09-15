@@ -1,3 +1,5 @@
+import { RouterModule, Routes } from '@angular/router';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdButtonModule,
@@ -41,7 +43,11 @@ import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
     MdButtonModule,
     MdCheckboxModule,
     MdSidenavModule,
-    MdCardModule
+    MdCardModule,
+    RouterModule.forRoot([
+      {path: "survey/list", component: SurveyListsComponent },
+      {path: "survey/detail", component: SurveyDetailComponent }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { MarkersService } from '../markers.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  providers: [MarkersService]
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  private markersService;
+
+  constructor(markersService :MarkersService)
+  {
+    this.markersService = markersService;
+  }
 
   ngOnInit() {
   }
@@ -16,16 +23,6 @@ export class MapComponent implements OnInit {
   lng: number = 139.751395;
   zoom: number = 18;
 
-  label = {
-    color: "#fff",
-    text: "!!!"
-  };
-
-  private markers = [
-    {id: 1, lat: 35.701702, lng: 139.751395, label: this.label},
-    {id: 2, lat: 35.701902, lng: 139.751395},
-    {id: 3, lat: 35.701202, lng: 139.751395},
-  ];
 
   /** マーカの保存 */
   saveMarker(index, markerId)
@@ -36,36 +33,17 @@ export class MapComponent implements OnInit {
   /** マーカの削除 */
   deleteMarker(markerId)
   {
-    confirm('ほんとに消す？');
-    let delIndex;
-    this.markers.forEach(function(marker, i, array) {
-      if (marker.id == markerId) {
-        delIndex = i;
-      }
-    });
-    console.log(delIndex);
-    this.markers.splice(delIndex, 1);
+    this.markersService.deleteMarker(markerId);
   }
 
   /** mapをクリックした時 */
   mapClicked($event) {
-    let count = this.markers.length;
-
-    this.markers.push({
-      id: count,
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      label : {
-        color: "#000",
-        text: count.toString()
-      }
-    });
+    this.markersService.addMarker($event);
   }
 
   /** mapをクリックした時 */
   cardClicked(markerId) {
-    console.log(markerId);
-    this.markers.forEach(function(marker, i, array) {
+    this.markersService.getMarkers().forEach(function(marker, i, array) {
       if (marker.id == markerId) {
         console.log(marker.lat);
         console.log(marker.lng);
