@@ -4,16 +4,18 @@ import {
   Input
 } from '@angular/core';
 import { MarkersService } from '../markers.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-survey-lists',
   templateUrl: './survey-lists.component.html',
   styleUrls: ['./survey-lists.component.css'],
-  providers: [ MarkersService ]
 })
 export class SurveyListsComponent implements OnInit {
 
   private markersService;
+
+  private subscription :Subscription;
 
   private markers;
 
@@ -23,6 +25,8 @@ export class SurveyListsComponent implements OnInit {
 
   /** マーカをサービスから取得 */
   ngOnInit() {
-    this.markers = this.markersService.getMarkers();
+    this.subscription = this.markersService.getMarkers().subscribe(
+      markers => { this.markers = markers; }
+    );
   }
 }

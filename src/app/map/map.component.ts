@@ -4,16 +4,19 @@ import { MarkersService } from '../markers.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
-  providers: [MarkersService]
+  styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+
+  /** マーカの配列 */
+  private markers;
 
   private markersService;
 
   constructor(markersService :MarkersService)
   {
     this.markersService = markersService;
+    this.markers = this.markersService.markeres;
   }
 
   ngOnInit() {
@@ -38,7 +41,9 @@ export class MapComponent implements OnInit {
 
   /** mapをクリックした時 */
   mapClicked($event) {
+    console.log('aaaaaaaa');
     this.markersService.addMarker($event);
+    this.markersService.updateMarkers();
   }
 
   /** mapをクリックした時 */

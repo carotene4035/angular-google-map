@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
 
 /*
  * markerの情報を保持するサービス
  */
 @Injectable()
 export class MarkersService {
+  private subject = new Subject<any>();
 
   /** マーカの配列 */
-  private markers;
+  public markers;
 
   /** マーカに使用するラベル */
   private label = {
@@ -23,6 +26,12 @@ export class MarkersService {
       {id: 3, lat: 35.701202, lng: 139.751395},
     ];
   }
+
+  updateMarkers()
+  {
+    this.subject.next({markers: this.markers});
+  }
+
 
   /** マーカの削除 */
   deleteMarker(markerId) :void
@@ -55,10 +64,14 @@ export class MarkersService {
     });
   }
 
-  /** マーカの取得 */
-  getMarkers()
+  /** マーカをすべて取得 */
+  getMarkers() :Observable<any>
   {
-    return this.markers;
+    return this.subject.asObservable();
   }
 
+  /** 特定のマーカを取得 */
+  getMarker(markerId)
+  {
+  }
 }

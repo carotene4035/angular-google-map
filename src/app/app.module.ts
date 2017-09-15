@@ -25,6 +25,8 @@ import { MapComponent } from './map/map.component';
 import { SurveyListsComponent } from './survey-lists/survey-lists.component';
 import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 
+import { MarkersService } from './markers.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +49,11 @@ import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
     RouterModule.forRoot([
       {path: "survey/lists", component: SurveyListsComponent },
       {path: "survey/detail/:id", component: SurveyDetailComponent }
-    ])
+    ]),
   ],
-  providers: [],
+  providers: [
+    MarkersService
+  ],
   bootstrap: [AppComponent]
 })
 
