@@ -25,7 +25,7 @@ export class MarkersService {
   }
 
   /** マーカの削除 */
-  deleteMarker(markerId)
+  deleteMarker(markerId) :void
   {
     confirm('ほんとに消す？');
     let delIndex;
@@ -39,7 +39,7 @@ export class MarkersService {
   }
 
   /** マーカの追加 */
-  addMarker($event)
+  addMarker($event) :void
   {
     let count = this.markers.length;
 

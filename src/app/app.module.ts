@@ -45,8 +45,8 @@ import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
     MdSidenavModule,
     MdCardModule,
     RouterModule.forRoot([
-      {path: "survey/list", component: SurveyListsComponent },
-      {path: "survey/detail", component: SurveyDetailComponent }
+      {path: "survey/lists", component: SurveyListsComponent },
+      {path: "survey/detail/:id", component: SurveyDetailComponent }
     ])
   ],
   providers: [],
