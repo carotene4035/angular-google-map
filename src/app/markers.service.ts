@@ -27,16 +27,24 @@ export class MarkersService {
   constructor()
   {
     this.markers = [
-      {id: 1, lat: 35.701702, lng: 139.751395, label: this.label},
-      {id: 2, lat: 35.701902, lng: 139.751395},
-      {id: 3, lat: 35.701202, lng: 139.751395},
+      {lat: 35.701702, lng: 139.751395, label: this.label},
+      {lat: 35.701902, lng: 139.751395},
+      {lat: 35.701202, lng: 139.751395},
     ];
   }
 
   /** マーカを1つ追加 */
-  addMarker()
+  addMarker($event)
   {
-    this.toMarkerListsDataSource.next('きたよぉ');
+    // listデータソースに通知
+
+    console.log($event.coords);
+    let marker = {
+      lat: $event.coords.lat,
+      lng: $event.coords.lng
+    };
+    this.markers.push(marker);
+    this.toMarkerListsDataSource.next('マーカの個数を最新状態にするよ。');
   }
 
   /** マーカをすべて取得 */

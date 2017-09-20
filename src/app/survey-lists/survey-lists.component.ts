@@ -23,7 +23,9 @@ export class SurveyListsComponent implements OnInit {
   ngOnInit() {
     // ここで購読する
     this.subscription = this.markersService.toMarkerListsData$.subscribe(
-      value => console.log(value)
+      value => {
+        this.markers = this.markersService.getAllMarkers();
+      }
     );
   }
 }

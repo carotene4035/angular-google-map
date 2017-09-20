@@ -44,12 +44,12 @@ export class MapComponent implements OnInit {
 
   /** mapをクリックした時 */
   mapClicked($event) {
-    this.markersService.addMarker();
+    this.markersService.addMarker($event);
   }
 
   /** mapをクリックした時 */
   cardClicked(markerId) {
-//    this.markersService.getMarker().forEach(function(marker, i, array) {
+//    this.markers.forEach(function(marker, i, array) {
 //      if (marker.id == markerId) {
 //        console.log(marker.lat);
 //        console.log(marker.lng);
