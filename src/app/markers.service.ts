@@ -59,7 +59,10 @@ export class MarkersService {
   /** 特定のマーカを取得 */
   getMarker(markerId)
   {
-
+    let marker = this.markers.filter(function(marker, i, array) {
+      return (marker.id == markerId);
+    });
+    return marker[0];
   }
 
   /** 特定のマーカを削除 */

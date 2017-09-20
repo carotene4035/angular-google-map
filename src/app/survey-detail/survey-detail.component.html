@@ -1,8 +1,21 @@
 <md-sidenav mode='side' opened="true" align="end" #sidenav class="example-sidenav" [(position)]='top'>
-  <md-card
-    *ngFor="let m of markers; let i = index" (click)="cardClicked(m.id)"
-    >
-    <md-card-subtitle>ＩＤ：{{m.id}}</md-card-subtitle>
-    <md-card-subtitle>緯度：{{m.lat}}  緯度：{{m.lat}}</md-card-subtitle>
+  <md-card>
+    <md-card-subtitle>ＩＤ：{{marker.id}}</md-card-subtitle>
+    <md-card-subtitle>緯度：{{marker.lat}}  緯度：{{marker.lat}}</md-card-subtitle>
+  </md-card>
+  <md-card>
+    <md-card-title>写真ドラッグエリア</md-card-title>
+  </md-card>
+  <md-card>
+    <md-card-title>写真ドラッグエリア</md-card-title>
+  </md-card>
+  <md-card>
+    <md-card-title>写真ドラッグエリア</md-card-title>
+  </md-card>
+  <md-card>
+    <md-card-title>写真ドラッグエリア</md-card-title>
+  </md-card>
+  <md-card>
+    <md-card-title>写真ドラッグエリア</md-card-title>
   </md-card>
 </md-sidenav>

@@ -24,6 +24,7 @@
             [latitude]="m.lat"
             [longitude]="m.lng"
             [label]="m.label"
+            (markerClick)="markerClicked(m.id)"
             >
             <agm-info-window>
               <strong>id:{{m.id}}</strong>

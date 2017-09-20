@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'; import { MarkersService } from '../markers.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -17,7 +18,7 @@ export class MapComponent implements OnInit {
   lng: number = 139.751395;
   zoom: number = 18;
 
-  constructor(private markersService: MarkersService)
+  constructor(private markersService :MarkersService, private router :Router)
   {
     this.markersService = markersService;
     this.markers = markersService.getAllMarkers();
@@ -41,26 +42,20 @@ export class MapComponent implements OnInit {
   {
   }
 
+  /** mapをクリックした時 */
+  mapClicked($event) {
+    this.router.navigate(["survey/lists"]);
+    this.markersService.addMarker($event);
+  }
+
+  /** mapをクリックした時 */
+  markerClicked(markerId) {
+    this.router.navigate(["survey/detail/" + markerId]);
+  }
 
   /** マーカの削除 */
   deleteMarker(markerId)
   {
     this.markersService.deleteMarker(markerId);
-  }
-
-  /** mapをクリックした時 */
-  mapClicked($event) {
-    this.markersService.addMarker($event);
-  }
-
-  /** mapをクリックした時 */
-  cardClicked(markerId) {
-//    this.markers.forEach(function(marker, i, array) {
-//      if (marker.id == markerId) {
-//        console.log(marker.lat);
-//        console.log(marker.lng);
-//        // TODO:途中
-//      }
-//    });
   }
 }

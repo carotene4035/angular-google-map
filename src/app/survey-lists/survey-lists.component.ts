@@ -3,6 +3,7 @@ import {
   OnInit,
   Input
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { MarkersService } from '../markers.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,7 +18,7 @@ export class SurveyListsComponent implements OnInit {
 
   private markers;
 
-  constructor(private markersService :MarkersService) {}
+  constructor(private markersService :MarkersService, private router :Router) {}
 
   /** マーカをサービスから取得 */
   ngOnInit() {
@@ -36,8 +37,7 @@ export class SurveyListsComponent implements OnInit {
 
   cardClicked(markerId)
   {
-    console.log('aaaaaa');
+    console.log(markerId);
+    this.router.navigate(["survey/detail/" + markerId]);
   }
-
-
 }
