@@ -13,20 +13,17 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class SurveyListsComponent implements OnInit {
 
-  private markersService;
-
   private subscription :Subscription;
 
   private markers;
 
-  constructor(markersService :MarkersService) {
-    this.markersService = markersService;
-  }
+  constructor(private markersService :MarkersService) {}
 
   /** マーカをサービスから取得 */
   ngOnInit() {
-    this.subscription = this.markersService.getMarkers().subscribe(
-      markers => { this.markers = markers; }
+    // ここで購読する
+    this.subscription = this.markersService.toMarkerListsData$.subscribe(
+      value => console.log(value)
     );
   }
 }

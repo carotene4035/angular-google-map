@@ -11,20 +11,23 @@ export class MapComponent implements OnInit {
   /** マーカの配列 */
   private markers;
 
-  private markersService;
-
-  constructor(markersService :MarkersService)
-  {
-    this.markersService = markersService;
-    this.markers = this.markersService.markeres;
-  }
-
-  ngOnInit() {
-  }
-
   lat: number = 35.701702;
   lng: number = 139.751395;
   zoom: number = 18;
+
+  constructor(private markersService: MarkersService)
+  {
+    this.markersService = markersService;
+    this.markers = markersService.getAllMarkers();
+    console.log(this.markers);
+  }
+
+  ngOnInit()
+  {
+
+
+
+  }
 
 
   /** マーカの保存 */
@@ -41,19 +44,17 @@ export class MapComponent implements OnInit {
 
   /** mapをクリックした時 */
   mapClicked($event) {
-    console.log('aaaaaaaa');
-    this.markersService.addMarker($event);
-    this.markersService.updateMarkers();
+    this.markersService.addMarker();
   }
 
   /** mapをクリックした時 */
   cardClicked(markerId) {
-    this.markersService.getMarkers().forEach(function(marker, i, array) {
-      if (marker.id == markerId) {
-        console.log(marker.lat);
-        console.log(marker.lng);
-        // TODO:途中
-      }
-    });
+//    this.markersService.getMarker().forEach(function(marker, i, array) {
+//      if (marker.id == markerId) {
+//        console.log(marker.lat);
+//        console.log(marker.lng);
+//        // TODO:途中
+//      }
+//    });
   }
 }

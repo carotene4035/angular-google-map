@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs';
 
 /*
  * markerの情報を保持するサービス
  */
 @Injectable()
 export class MarkersService {
-  private subject = new Subject<any>();
+
+  /** 通知するオブジェクト */
+  private toMarkerListsDataSource = new Subject<string>();
+
+  /** 監視されるオブジェクト */
+  /** 各コンポーネントで購読される */
+  public toMarkerListsData$ = this.toMarkerListsDataSource.asObservable();
+
 
   /** マーカの配列 */
   public markers;
@@ -27,51 +33,27 @@ export class MarkersService {
     ];
   }
 
-  updateMarkers()
+  /** マーカを1つ追加 */
+  addMarker()
   {
-    this.subject.next({markers: this.markers});
-  }
-
-
-  /** マーカの削除 */
-  deleteMarker(markerId) :void
-  {
-    confirm('ほんとに消す？');
-    let delIndex;
-    this.markers.forEach(function(marker, i, array) {
-      if (marker.id == markerId) {
-        delIndex = i;
-      }
-    });
-    console.log(delIndex);
-    this.markers.splice(delIndex, 1);
-  }
-
-  /** マーカの追加 */
-  addMarker($event) :void
-  {
-    let count = this.markers.length;
-
-    this.markers.push({
-      id: count,
-      lat: $event.coords.lat,
-
-      lng: $event.coords.lng,
-      label : {
-        color: "#000",
-        text: count.toString()
-      }
-    });
+    this.toMarkerListsDataSource.next('きたよぉ');
   }
 
   /** マーカをすべて取得 */
-  getMarkers() :Observable<any>
+  getAllMarkers()
   {
-    return this.subject.asObservable();
+    return this.markers;
   }
 
   /** 特定のマーカを取得 */
   getMarker(markerId)
   {
+
+  }
+
+  /** 特定のマーカを削除 */
+  deleteMarker(markerId)
+  {
+
   }
 }
