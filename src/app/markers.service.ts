@@ -9,10 +9,12 @@ export class MarkersService {
 
   /** 通知するオブジェクト */
   private toMarkerListsDataSource = new Subject<string>();
+  private toMarkerMapDataSource   = new Subject<string>();
 
   /** 監視されるオブジェクト */
   /** 各コンポーネントで購読される */
   public toMarkerListsData$ = this.toMarkerListsDataSource.asObservable();
+  public toMarkerMapData$   = this.toMarkerMapDataSource.asObservable();
 
 
   /** マーカの配列 */
@@ -26,26 +28,27 @@ export class MarkersService {
 
   constructor()
   {
-    this.markers = [
-      {lat: 35.701702, lng: 139.751395, label: this.label},
-      {lat: 35.701902, lng: 139.751395},
-      {lat: 35.701202, lng: 139.751395},
-    ];
+    this.markers = [];
   }
 
   /** マーカを1つ追加 */
   addMarker($event)
   {
-    // listデータソースに通知
-
-    console.log($event.coords);
+    let id = this.markers.length;
+    /** 新しいマーカの生成 */
     let marker = {
+      id: id,
       lat: $event.coords.lat,
       lng: $event.coords.lng
     };
+
+    /** 新しいマーカの追加 */
     this.markers.push(marker);
+
     this.toMarkerListsDataSource.next('マーカの個数を最新状態にするよ。');
+    this.toMarkerMapDataSource.next('マーカの個数を最新状態にするよ。');
   }
+
 
   /** マーカをすべて取得 */
   getAllMarkers()

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MarkersService } from '../markers.service';
+import { Component, OnInit } from '@angular/core'; import { MarkersService } from '../markers.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-map',
@@ -11,6 +11,8 @@ export class MapComponent implements OnInit {
   /** マーカの配列 */
   private markers;
 
+  private subscription :Subscription;
+
   lat: number = 35.701702;
   lng: number = 139.751395;
   zoom: number = 18;
@@ -19,14 +21,18 @@ export class MapComponent implements OnInit {
   {
     this.markersService = markersService;
     this.markers = markersService.getAllMarkers();
-    console.log(this.markers);
   }
 
   ngOnInit()
   {
-
-
-
+    // ここで購読する
+    this.subscription = this.markersService.toMarkerMapData$.subscribe(
+      value => {
+        console.log('マップ側で購読できたよ');
+        this.markers = this.markersService.getAllMarkers();
+        console.log(this.markers);
+      }
+    );
   }
 
 

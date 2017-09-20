@@ -21,11 +21,23 @@ export class SurveyListsComponent implements OnInit {
 
   /** マーカをサービスから取得 */
   ngOnInit() {
+
+    // マーカを初期化
+    this.markers = this.markersService.getAllMarkers();
+
     // ここで購読する
     this.subscription = this.markersService.toMarkerListsData$.subscribe(
       value => {
+        console.log('リスト側で購読できたよ');
         this.markers = this.markersService.getAllMarkers();
       }
     );
   }
+
+  cardClicked(markerId)
+  {
+    console.log('aaaaaa');
+  }
+
+
 }
