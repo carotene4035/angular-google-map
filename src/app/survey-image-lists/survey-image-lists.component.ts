@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-survey-detail-image-lists',
-  templateUrl: './survey-detail-image-lists.component.html',
-  styleUrls: ['./survey-detail-image-lists.component.css']
+  selector: 'app-survey-image-lists',
+  templateUrl: './survey-image-lists.component.html',
+  styleUrls: ['./survey-image-lists.component.css']
 })
-export class SurveyDetailImageListsComponent implements OnInit {
+export class SurveyImageListsComponent implements OnInit {
   @Input() marker;
 
   private partName1 = '全体';

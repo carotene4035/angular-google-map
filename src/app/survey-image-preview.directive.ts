@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appSurveyDetailImagePreview]'
+  selector: '[appSurveyImagePreview]'
 })
-export class SurveyDetailImagePreviewDirective {
+export class SurveyImagePreviewDirective {
 
   @Input() image: any;
 

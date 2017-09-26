@@ -25,22 +25,22 @@ import {
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { SurveyListsComponent } from './survey-lists/survey-lists.component';
-import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
+import { SurveyComponent } from './survey/survey.component';
 
 import { MarkersService } from './markers.service';
-import { SurveyDetailImageComponent } from './survey-detail-image/survey-detail-image.component';
-import { SurveyDetailImageListsComponent } from './survey-detail-image-lists/survey-detail-image-lists.component';
-import { SurveyDetailImagePreviewDirective } from './survey-detail-image-preview.directive';
+import { SurveyImageComponent } from './survey-image/survey-image.component';
+import { SurveyImageListsComponent } from './survey-image-lists/survey-image-lists.component';
+import { SurveyImagePreviewDirective } from './survey-image-preview.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     SurveyListsComponent,
-    SurveyDetailComponent,
-    SurveyDetailImageComponent,
-    SurveyDetailImageListsComponent,
-    SurveyDetailImagePreviewDirective
+    SurveyComponent,
+    SurveyImageComponent,
+    SurveyImageListsComponent,
+    SurveyImagePreviewDirective
   ],
   imports: [
     BrowserModule,
@@ -57,7 +57,7 @@ import { SurveyDetailImagePreviewDirective } from './survey-detail-image-preview
     MdCardModule,
     RouterModule.forRoot([
       {path: "survey/lists", component: SurveyListsComponent },
-      {path: "survey/detail/:id", component: SurveyDetailComponent }
+      {path: "survey/:id", component: SurveyComponent }
     ]),
   ],
   providers: [

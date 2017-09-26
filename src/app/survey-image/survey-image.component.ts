@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-survey-detail-image',
-  templateUrl: './survey-detail-image.component.html',
-  styleUrls: ['./survey-detail-image.component.css']
+  selector: 'app-survey-image',
+  templateUrl: './survey-image.component.html',
+  styleUrls: ['./survey-image.component.css']
 })
-export class SurveyDetailImageComponent implements OnInit {
+export class SurveyImageComponent implements OnInit {
   @Input() partCode: string;
   @Input() partName: string;
 

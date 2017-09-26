@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
   mapClicked($event) {
     if (this.clickable == true) {
       let markerId = this.markersService.addMarker($event);
-      this.router.navigate(["survey/detail/" + markerId]);
+      this.router.navigate(["survey/" + markerId]);
       this.clickable = false;
     }
   }
@@ -55,7 +55,7 @@ export class MapComponent implements OnInit {
   /** markerをクリックした時 */
   markerClicked(markerId, infowindow) {
     if (this.clickable == true) {
-      this.router.navigate(["survey/detail/" + markerId]);
+      this.router.navigate(["survey/" + markerId]);
       this.clickable = false;
     }
   }

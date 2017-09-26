@@ -5,11 +5,11 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-survey-detail',
-  templateUrl: './survey-detail.component.html',
-  styleUrls: ['./survey-detail.component.css']
+  selector: 'app-survey',
+  templateUrl: './survey.component.html',
+  styleUrls: ['./survey.component.css']
 })
-export class SurveyDetailComponent implements OnInit {
+export class SurveyComponent implements OnInit {
 
   private markersService;
 
