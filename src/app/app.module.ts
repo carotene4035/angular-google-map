@@ -11,6 +11,8 @@ import {
   AgmCoreModule,
   GoogleMapsAPIWrapper
 } from '@agm/core';
+import { DndModule } from 'ng2-dnd';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -26,18 +28,25 @@ import { SurveyListsComponent } from './survey-lists/survey-lists.component';
 import { SurveyDetailComponent } from './survey-detail/survey-detail.component';
 
 import { MarkersService } from './markers.service';
+import { SurveyDetailImageComponent } from './survey-detail-image/survey-detail-image.component';
+import { SurveyDetailImageListsComponent } from './survey-detail-image-lists/survey-detail-image-lists.component';
+import { SurveyDetailImagePreviewDirective } from './survey-detail-image-preview.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     SurveyListsComponent,
-    SurveyDetailComponent
+    SurveyDetailComponent,
+    SurveyDetailImageComponent,
+    SurveyDetailImageListsComponent,
+    SurveyDetailImagePreviewDirective
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
+    DndModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDfnrYNQtMC-PqTWvH9F36TehlAN6Zw3MM'
     }),

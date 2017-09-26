@@ -1,0 +1,7 @@
+  <md-card dnd-droppable class="my-drop-zone" (onDropSuccess)="transferDataSuccess($event)">
+    <md-card-title>{{partName}} (Items:{{images.length}})</md-card-title>
+    <div [hidden]="!images.length > 0" *ngFor="let image of images">
+      <!-- preview directiveにimage file情報を渡す -->
+      <img [image]="image" appSurveyDetailImagePreview src="" class="media-object">
+    </div>
+</md-card>

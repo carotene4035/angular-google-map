@@ -1,21 +1,3 @@
 <md-sidenav mode='side' opened="true" align="end" #sidenav class="example-sidenav" [(position)]='top'>
-  <md-card>
-    <md-card-subtitle>ＩＤ：{{marker.id}}</md-card-subtitle>
-    <md-card-subtitle>緯度：{{marker.lat}}  緯度：{{marker.lat}}</md-card-subtitle>
-  </md-card>
-  <md-card>
-    <md-card-title>写真ドラッグエリア</md-card-title>
-  </md-card>
-  <md-card>
-    <md-card-title>写真ドラッグエリア</md-card-title>
-  </md-card>
-  <md-card>
-    <md-card-title>写真ドラッグエリア</md-card-title>
-  </md-card>
-  <md-card>
-    <md-card-title>写真ドラッグエリア</md-card-title>
-  </md-card>
-  <md-card>
-    <md-card-title>写真ドラッグエリア</md-card-title>
-  </md-card>
+  <app-survey-detail-image-lists [marker]='marker'></app-survey-detail-image-lists>
 </md-sidenav>
