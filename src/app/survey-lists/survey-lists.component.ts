@@ -40,6 +40,6 @@ export class SurveyListsComponent implements OnInit {
   cardClicked(markerId)
   {
     console.log(markerId);
-    this.router.navigate(["survey/detail/" + markerId]);
+    this.router.navigate(["survey/" + markerId]);
   }
 }

@@ -15,9 +15,9 @@ export class SurveyImageListsComponent implements OnInit {
   private partName5 = '取付部';
   private partName6 = 'バンド部';
   private partName7 = 'その他'
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }
