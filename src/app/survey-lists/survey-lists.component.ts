@@ -27,12 +27,14 @@ export class SurveyListsComponent implements OnInit {
     this.markers = this.markersService.getAllMarkers();
 
     // ここで購読する
-    this.subscription = this.markersService.toMarkerListsData$.subscribe(
+    this.subscription = this.markersService.toListsMarkerData$.subscribe(
       value => {
         console.log('リスト側で購読できたよ');
         this.markers = this.markersService.getAllMarkers();
       }
     );
+
+
   }
 
   cardClicked(markerId)

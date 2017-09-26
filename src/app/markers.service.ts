@@ -8,17 +8,22 @@ import { Subject } from 'rxjs/Subject';
 export class MarkersService {
 
   /** 通知するオブジェクト */
-  private toMarkerListsDataSource = new Subject<string>();
-  private toMarkerMapDataSource   = new Subject<string>();
+  private toListsMarkerDataSource    = new Subject<string>();
+  private toMapMarkerDataSource      = new Subject<string>();
+  private toDetailMarkerDataSource   = new Subject<string>();
 
   /** 監視されるオブジェクト */
   /** 各コンポーネントで購読される */
-  public toMarkerListsData$ = this.toMarkerListsDataSource.asObservable();
-  public toMarkerMapData$   = this.toMarkerMapDataSource.asObservable();
+  public toListsMarkerData$  = this.toListsMarkerDataSource.asObservable();
+  public toMapMarkerData$    = this.toMapMarkerDataSource.asObservable();
+  public toDetailMarkerData$ = this.toDetailMarkerDataSource.asObservable();
 
+
+  /** マーカ全部の配列 */
+  private markers;
 
   /** マーカの配列 */
-  public markers;
+  private marker;
 
   /** マーカに使用するラベル */
   private label = {
@@ -45,8 +50,9 @@ export class MarkersService {
     /** 新しいマーカの追加 */
     this.markers.push(marker);
 
-    this.toMarkerListsDataSource.next('マーカの個数を最新状態にするよ。');
-    this.toMarkerMapDataSource.next('マーカの個数を最新状態にするよ。');
+    this.toMapMarkerDataSource.next('マーカの個数を最新状態にするよ。');
+    this.toListsMarkerDataSource.next('マーカの個数を最新状態にするよ。');
+    return id;
   }
 
 
@@ -57,13 +63,19 @@ export class MarkersService {
   }
 
   /** 特定のマーカを取得 */
-  getMarker(markerId)
+  setDetailMarker(markerId)
   {
     let marker = this.markers.filter(function(marker, i, array) {
       return (marker.id == markerId);
     });
-    return marker[0];
+    this.marker = marker[0];
   }
+
+  getMarker()
+  {
+    return this.marker;
+  }
+
 
   /** 特定のマーカを削除 */
   deleteMarker(markerId)

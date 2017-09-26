@@ -12,11 +12,13 @@
     </button>
   -->
   <router-outlet></router-outlet>
+
   <agm-map
             [latitude]="lat"
             [longitude]="lng"
             [zoom]="zoom"
             (mapClick)="mapClicked($event)"
+            #gm
             >
 
             <agm-marker
@@ -24,9 +26,13 @@
             [latitude]="m.lat"
             [longitude]="m.lng"
             [label]="m.label"
-            (markerClick)="markerClicked(m.id)"
+            [markerDraggable]="true"
+            (markerClick)="markerClicked(m.id, infowindow); gm.lastOpen?.close(); gm.lastOpen = infoWindow"
             >
-            <agm-info-window>
+            <agm-info-window
+              [isOpen]="true"
+              #infowindow
+              >
               <strong>id:{{m.id}}</strong>
               <label>緯度</label>
               <input class='form-control' type='text' [(ngModel)]="m.lat">
@@ -36,8 +42,8 @@
                 <option value="">街灯</option>
                 <option value="">引き込み柱</option>
               </select>
-              <button class='btn btn-info' (click)='saveMarker(m.id)'>登録</button>
-              <button class='btn btn-default' (click)='deleteMarker(m.id)'>削除</button>
+              <button class='btn btn-info' (click)='saveMarker(m.id, infowindow)'>登録</button>
+              <button class='btn btn-default' (click)='deleteMarker(m.id, infowindow)'>削除</button>
             </agm-info-window>
             </agm-marker>
   </agm-map>

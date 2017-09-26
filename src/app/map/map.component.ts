@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'; import { MarkersService } from '../markers.service';
+import { Component, OnInit } from '@angular/core';
+import { MarkersService } from '../markers.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
+
 export class MapComponent implements OnInit {
 
   /** マーカの配列 */
@@ -14,9 +16,13 @@ export class MapComponent implements OnInit {
 
   private subscription :Subscription;
 
-  lat: number = 35.701702;
-  lng: number = 139.751395;
-  zoom: number = 18;
+  private lat: number = 35.701702;
+  private lng: number = 139.751395;
+  private zoom: number = 18;
+
+  /** mapやマーカがクリックできるかどうか */
+  private clickable: boolean = true;
+
 
   constructor(private markersService :MarkersService, private router :Router)
   {
@@ -27,7 +33,7 @@ export class MapComponent implements OnInit {
   ngOnInit()
   {
     // ここで購読する
-    this.subscription = this.markersService.toMarkerMapData$.subscribe(
+    this.subscription = this.markersService.toMapMarkerData$.subscribe(
       value => {
         console.log('マップ側で購読できたよ');
         this.markers = this.markersService.getAllMarkers();
@@ -37,25 +43,38 @@ export class MapComponent implements OnInit {
   }
 
 
-  /** マーカの保存 */
-  saveMarker(index, markerId)
-  {
-  }
-
   /** mapをクリックした時 */
   mapClicked($event) {
-    this.router.navigate(["survey/lists"]);
-    this.markersService.addMarker($event);
+    if (this.clickable == true) {
+      let markerId = this.markersService.addMarker($event);
+      this.router.navigate(["survey/detail/" + markerId]);
+      this.clickable = false;
+    }
   }
 
-  /** mapをクリックした時 */
-  markerClicked(markerId) {
-    this.router.navigate(["survey/detail/" + markerId]);
+  /** markerをクリックした時 */
+  markerClicked(markerId, infowindow) {
+    if (this.clickable == true) {
+      this.router.navigate(["survey/detail/" + markerId]);
+      this.clickable = false;
+    }
+  }
+
+  /** マーカの保存 */
+  saveMarker(markerId, infowindow)
+  {
+    infowindow.close();
+    this.clickable = true;
+    this.router.navigate(["survey/lists"]);
   }
 
   /** マーカの削除 */
-  deleteMarker(markerId)
+  deleteMarker(markerId, infowindow)
   {
+    infowindow.close();
     this.markersService.deleteMarker(markerId);
+    this.clickable = true;
+    this.router.navigate(["survey/lists"]);
   }
+
 }
